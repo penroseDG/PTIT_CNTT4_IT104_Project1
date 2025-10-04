@@ -3,7 +3,7 @@
     {
       "id": 1,
       "fullName": "Nguyễn Văn A",
-      "email": "nguyenvanaa@gmail.com",
+      "email": "nguyenvana@gmail.com",
       "password": "123456",
       "phone": "0987654321",
       "gender": true,
@@ -17,6 +17,16 @@
       "phone": "0987654321",
       "gender": false,
       "status": true
+    },
+    {
+      "email": "dudangdaide@gmail.com",
+      "password": "123456",
+      "id": 3
+    },
+    {
+      "email": "ducvip@gmail.com",
+      "password": "123456",
+      "id": 4
     }
   ],
   "categories": [
@@ -36,19 +46,21 @@
   "monthlyCategories": [
     {
       "id": 1,
-      "month": "2025-09-30",
-      "categories": [
-        {
-          "id": 1,
-          "categoryId": 1,
-          "budget": 300000
-        },
-        {
-          "id": 2,
-          "categoryId": 2,
-          "budget": 500000
-        }
-      ]
+      "month": "2025-09-30"
+    }
+  ],
+  "monthlyCategoryDetails": [
+    {
+      "id": 1,
+      "monthlyCategoryId": 1,
+      "categoryId": 1,
+      "budget": 300000
+    },
+    {
+      "id": 2,
+      "monthlyCategoryId": 1,
+      "categoryId": 2,
+      "budget": 500000
     }
   ],
   "transactions": [
@@ -60,6 +72,5 @@
       "categoryId": 1,
       "monthlyCategoryId": 1
     }
-  ],
-  "status": "success"
+  ]
 }
