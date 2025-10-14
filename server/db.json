@@ -1,4 +1,10 @@
 {
+  "admin": [
+    {
+      "username": "admin1",
+      "password": "123456"
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -21,56 +27,287 @@
     {
       "email": "dudangdaide@gmail.com",
       "password": "123456",
-      "id": 3
+      "id": 3,
+      "status": true
     },
     {
       "email": "ducvip@gmail.com",
       "password": "123456",
-      "id": 4
+      "id": 4,
+      "status": true
+    },
+    {
+      "email": "dd@gmail.com",
+      "password": "11111111",
+      "id": 5,
+      "status": true
+    },
+    {
+      "email": "a@gmail.com",
+      "password": "111111",
+      "id": 6,
+      "status": true
     }
   ],
   "categories": [
     {
-      "id": 1,
-      "name": "Tiền đi học",
-      "imageUrl": "đường dẫn ảnh",
-      "status": true
+      "name": "đâs",
+      "status": true,
+      "id": 5,
+      "imageUrl": "123"
     },
     {
-      "id": 2,
-      "name": "Tiền đi chơi",
-      "imageUrl": "đường dẫn ảnh",
-      "status": false
+      "name": "sdsa",
+      "status": true,
+      "id": 6,
+      "imageUrl": "123"
+    },
+    {
+      "name": "sdasd",
+      "status": true,
+      "id": 7,
+      "imageUrl": "123"
+    },
+    {
+      "name": "đá",
+      "status": true,
+      "id": 8
+    },
+    {
+      "name": "â",
+      "status": true,
+      "id": 9
+    },
+    {
+      "name": "aaa",
+      "status": true,
+      "id": 10
+    },
+    {
+      "name": "aaa",
+      "status": true,
+      "id": 11
+    },
+    {
+      "name": "oke",
+      "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ8AAACUCAMAAAC6AgsRAAAAh1BMVEUAAAD////t7e3s7Ozu7u7x8fH19fXy8vLr6+v29vb7+/vz8/P5+fnw8PD39/f09PTv7+/6+vr8/Pz4+Pj+/v79/f0RERHIyMgjIyNgYGCcnJylpaXh4eEKCgobGxspKSm4uLhQUFBoaGjW1taJiYk9PT1ISEh3d3eAgIAxMTFYWFiurq6UlJTEMvtSAAAYcElEQVR4nL1ciZrbKLO1AO1CAi1uJ227O+lksr7/891aQEKb7U7yX38znnG1dVxCVHEoOByiKNIyq6KozqSOolaIDEyxzOooqjKhomhQIhuiKJUyiSKbCRFFvZFZG0WNlGUUFRIv6QHFRlGeyRhMI0oXRV0mDQADSk8oOQEDygAoAFxK2QCwFJJRiihKMpkSijiUZZnXXVOWSdflZdnUXYemrkvgQ9fV8GFmqskEH/iSDdMMpSGU/I9RDuAjOJwKAY1TZELDPUohoCUagY3TZsLAPSohoYlzKeC2emhVaDwtJDaOFNBeEZgAJRbYONASiJIRcCmwcQBFA4oQEoATavWBgQ0B1wQcjcD47BjY+RdLwQ8v8E8G/gnnn5z8MwTT0fOc+5d5/6x/eMXoX0X+pexfSzfeoX8ehf3jLkD+JUmT13XTJEld5w1/SBr4kND73NQ0zcrkP2ybtlC2gBMPnM9RDtyNqY0pPlQQH52UEB8td2OOj4q6MfbsYowPE8RHIlfxAcBhfGTYOFK6+GiD+GAUfJzcxIWQgvzjhydUjDAKkaE/Uh9QBmEUhRl1USsUIsMzQP+EAP+s0YgcU+fKqdsUHoW7qMIbB5SegMk/hYlBK9kScEPAFL8GgROB/RFQ1MHaKtW6tjbRuixsF8faWltqnVub6zhlU0WmpLC1juMCLol1Z22j46YourjUbCKU+P0ouiEToaRxVxQNodRxHB+kRIeh2Sl+pcGeTU+qyTIKM6mwZ1MXyLOMurEUGB/cBTKTsomiLKP4wI4CJgQuZUbxS8CSu0CWUZQRsOIu4IExZGLFuZdQDtCGY35xmUEqzi+iHDODUmF+UWbKL0aRf2qWX2K8S0LhhwcpnOKXTAkBu/id5xfN/vn8AigHaMOuaKnZ287EpS1aaOm6aKnZi8rEaVW0MZmoCxTWxDGY4OHkbVHrNLVFYQgFTIACTwpMLZsYpWMUHaBUjALAedHmZCqguwCWR9EIfOj7IVai6/tcqbjvC+izQz+kSuR9XyuIDzK1fQ+mpO87aO+obzW0RN83xjR9X0HjgglQqr5PCMUaJXtCqQlFR71doDjgou9LpQjFaPQlloDSKJWCyUB8cORhG3P8mlX8gkmu4ldx/BqMPEWRB4/FUhZIg/gV2AXE7fhtOH4VmRgl8SjoX2Qy1/kRRmaIrDPu/BleIzJEjrOMhpgMnVEZ8QMKoSKjSwCFOz/mlxGFOz/epSAToNDgkOFdAgom1iyj/IJ/R+CCgFMG9vHL3wGkMH5TjI9sGb/9PH6zKVj5FqoQpfS3gCiSUDh+B0YZ4zcdE4P2txDGr+L4VRi/wscvZgYwTfErgvg1WqF/Qkzxi72WUGLKAiqIX7WKX8koDKwoS7EJOnIQv4pgUu4DANP2AKMqn18QGW9TYU/CtA59GGAKzC+65l7b9+CfsZhfBA2BKh569K8aBwcPLCo3OPR44wX6h8C1xkDDG0dgusuOUPoD5IsSw75IYkjzBWV+SOBxnBdFjmm+6CDgq6Io4zgpCszpkBxKMsG3GjJpMKUepWQUBkYUBk4R2M5QUo+CQ0riUboAJQ7iF3LoyA9SJk9SUPyKcPwl5huLbBp/hdoZf2NPETWjUPwSeZJEzME0jb+xofHXUUQefwXF75zfy4C/ZJL4vSRkF7+SkokRFL/M7+mSOb+Xa34vA/6SEX9RzO8h/2F+wUt6E/J7iN1DmqZ1VTVpnFRVHadlV+EYnaMpbaqqi9N0NCVpWoIpJVNJpjylS2JCKQkljwMTADcEPENxwHwJvOclAm+hjOMvkrtic/w1y/FXCrPi9+vxF1CK1fgrg/FXBfxe+Syww++ZfAJ/YWYumd832/xeqj1+L6XjL2t+jyhyze+NUdy3An7vpnhkOuR5ksC/9B/3noymfGXi1/wrdy7ZAh4/OLw9lHzi9/ma33OYufh1898x8kZ+b0U4/2V+r2b8Xqzmv5LnvwIH9oameIASzH/lOP8d+b3PL2rKLxUhD4v8YiZ+LymFP5hfVJhflAr8C/k9Afv8AvwAIqlMUwyrGGOoRoKNMZS6GBpNDZvKJqVL4tqHOP49RNkwbQCnlAji2joUSAQTcOKB021+z/Gxwe+lY+bMD7opPt7F72XA73n+O6JQfIT8Xogpv3h+L9b5ZV4/WOcXseb3IuD3fn6+xe+7m/UDGOPqcXDVSMOBZqOJB9eOTfwtHBZtUYGpQxruhmgwWY1k/h0oxQIlDlBSj1KO/B7vISeaW2A3BhpOLQHMFyMPCAV2Y6JglcCe3Xr+TOMv8WdEYXIS45SYQiYlplR7YAwGx5/B0xGFmxhmCYJN/OxSptS7/B7bu08SwI/qGhyLhqqDxo8gKcF7lwBkVCQJ4Ed53oymNkkqMoHjUUWmIUk6RKFvVUkyIEpOwPR3myStnzj0eoPfMw13/J5H9rJ9+vL5g3/x/32eDH/3YqDPAd73JwxE4gfZxN2JH2RE+JnfF46ZZ/r84TC9rkf4F/65Hv7NC3AuxwXejzeMj0yG/N7s8fv4/DW49HI6Ha4vl+PLy79x8Ag4Lwh5OoZOvyE/2OL3psJpKc1BoQsCDVflfzPA08v1dLqcXl6Oh3/xOoJjL8fry8vpEpq/Gpx/wKw6Vgrm3hCbnt9jfagtEgj4Fjm1iV7ngAgF3sE9/5vXyeEtHsfHpAVfYtOhL7psd/g9zPy/LACvx+PlePxX3Y/w8LWwfsgmfj/V1zb4fcPB8eH5+ePHj8/4/vz8PH2Y3u+ZnjdNjBb+/zf6vZfzFr+PsQZXlFzG0TqtbJuxf68D5ru8rigFYtZr85zyXY35rKpz6L99nlsyYT6zdT7Qh8lU1PlNlA5NGfuXYa0KfMH6UEH1IWtn9TXH751/v8qS5udme36u1Q6/r0Z+f7u+5ufnnfPvBMOvmtXXiB/INb8P/QPmQfxFBvyF6/dyxu+Zv/ASzga/l47f24nfUzFSydG/F6Ava36PZfNmVkNPtHu+PTDsoF7P3wpNyVj15/dZJb4eLxmB1yZCyc+u/boA2F3C/Jn5vZufSxcfr8APjF7w+4rn53qD34ss4M9b/F6u+T3Nz5Xz7zyi3OL3oX8GTZ7f+/mH86+d+L2YMsPcv5DfO//W9YPGzP2b+D3613V1g8tedeJXyhqB/l0gfrG1/eJZTctiNX2oeaWsnhbX1ijTJW4hL0nmKPwtREm8f9UaZZz/Zov4uB5+Jczvef6bBetbG/xerPm9YH7vZtFxuP7G81/m9wDs4xeezW1+n/n8crmAf3lzi9+bB/m95PySBv6JdM7vffyKDX6P9RdrseZhLdZfKlvIDzgCHV4LMFH9xVqsnFiLMzFrKx2YaIpnrV6h2JhMWH+xOFNryIT8Hks2M+DWx29KJkZxwG787Xz8Qs+W5QeifK/z+ho38Tx+XX0Ng2HgKGN+z/GBwMjvqcpe8Py3A47XYUu6iT/GL8THxcXH4OLX8XuK3zm/h2lA8xk4H7TfA/V7V/+7Wb+vhdZ+4vD28dvPT59/v6ZNUL/H+L34+FULfgDzI+3bL/btdwEHx/bDxmiD9UsR9XDnU/2gwsoEoVDxh+ZH2KTA5GiIofUPRNHmm6doP58aQsGnQPnvckH/CIXm3tR+mF+gvVf8/sMRqeOvlLox1++zcP0to/p9Ftbvs6l+b5mZ88ShzHh+nqk+egvZ1EctcFaocO7j43fB7zfW35SL3+tl4gc79XtNNPxW/Z7iVxlXv4/e5gTyuRnr92P8bvB7Y0w19KlRzTBUwgC/7z0/yMthsGAqht4Y1Q19okw6DC2MenbotVH1MNRgaodBeJRkGDpEGXo2lcY0hFIWS5b6WjuU0T9DwLFR+Qh8aNsi1aZu29zotG2ruNHY/2h8q42O0aSVbdtSm6TFZTvdtjbWpmrbRpuybYE1Kkbp2jYhlNEEE4e2jkswRR+X/n2NABhQytSPH31rRxQG1iG/p/iN4Yb9+DvG7+31cxe/PP6KsL5mDC3BYvxm/y39OzwlQrr8Eoy/G/zedX7m9yqb+MFu/d7tz+HFK67f+/U3qk+yiVeaa0J5uqz8+55z/V4E/pmM+f04P4f+Bw2K3QQaFJ6nbX3/e82hjStlwNRiN8Fmhz7RFspoeCzYTeDhGZUWbcum1GAX6Ax02bZl4IaAK9U8r9w7fB4Ipe59/9MOhYENAs/5vdA4jC/4/W78rvm9i1/m99DZJ35frrofTMDKWfyu+T3Grwz5veCR/R6/9/yFt6CE+w8Cfi/1xO/bLN7w77N165cjv5czfk/5r6pww1NedTnQra5CZhf7/ocErEJTWtO3korJHn2LTViZbcoUTIySsAku6bquaZyprIbXtX/fLAN7/pfZqp62aBFKOfF7eOAr/ryu31fyBr+v/CgJIytVwczE799+rPx77vb5vVjx+1ziGuzMvyoL6vdpwO97x8x5/9Bs/iHKJtfZOQv35yBK9HnlX1Ju+jfn97TaQssijXvPpfOvHU1N+K2Gv5vMTe5DWz59+Qks4OXnx6eiDYCLt6V7X3p3oZ+/naGPNXNfktn61sSfKT7SaRucmvF7t39tze91/vppLKscf74F/N5Ei6rOp0wv+b3nz47fh+tvYsO/8mb93vglYvYPV76Lp5+LCM0q4ffX9cXMwU/n9CF+T8FpafHF1rhYaq1w/lXAybuYTGmZ5pWlZRMwlUTmyYRkvbJVDPFcRM+rAuHX1wgikSh/19ZBjvl5rtKyZuDCxy/7Qks4BNzZisZfmonx+huS0TvxK7fX3/JsHQHYy6rC76+TUfbtK/TN49efT1bvzM/lND+3Yoffr/jBA/w+Ov/ccg+ecRwH+3POT6+vT2dcM5/z+8Mevwc+h/ubhgH3//WDNUql3j9cuSCTKIYhVSrpgdwp1Q8F7m8ahkaosh9w5aKPzuv85p+xTBlYAJ+DjmR5YcWj9AF/IVMVAKvZ/hzH788+fgN+v7G/LuT3+mnPO3TwHBG/X+6vE8NsfAN+v78/Z8Hvyb8H+QGOv08vN/w7vKh0vT8nUxv8Xm3wew0NyjQcyRSQ+Rm/R341DNoYIPPAr8p2IH41DEA+PQ2PVrl36eC5QRSkXIwyIIoHjs7OP7MALob2AL+X0kwiB9oGLsIFU/+DC8BF4GgF3QJOLuA32ITdhH6pyzfG1uUjTsATQGkZZQIGF8t45PdDEQKjLyt+D529fIDfB/Ebva2p8er1Iy9399fdjN+A32fz+v3I78Wa3/P+Ot6cln2du7Lt7YdMhfvr5LS/boPfB+tv4CNOAyHr4fxS6WIY4yOBGLdk6g2loARyD84vlcFpIJBleFL6/Ol+6+HrJ+8yw1kqohSMQrPocX4ZAOP6Ec4v/zJ+C7Ph3nYLfoGOsr2/bsnvw/id85eN+v3t/ffVtw1PLtsOfqx39t8H9fvC83skRugfjPe4k8rS5iog2DBgT/wePlgLnDvuaJtFYis08SW088J+3/Rkx8HnaIWCwI3nBwWagHvQ/g32Zas+Xgb8YFX/m/H7YmPWc8vBp839dXf5vVt/W9Xvt/QzIb9vNya1dxwsvHhCTQsDW/x+XF9AtQOSc34ngYPrfx8jZN/N/O/JZGqi1xuJb9vBy9uwQIH3zo0f59wBB7818WdPc8f4uL4WK/4cxkfyRHT0etpeF9528OtbEB+0v27F71Ozsb9ug98frk+3+H33RH4dr8fT9rr6joNZtRu/3j8R6GdwQlxVtGxCE+K6qoTfHHE9RxBDaKJpc0XLJlWHpi46c7Ndr6fjzsL6toM/swpRAuCR3zdkShrnS4P7J8f1ab/+No5veMlTPsrAeAkHbp74fcmtd4XWu+60356Dn84L/UwYH7GY6WfkFj+Y/Du8PG3zg5YpyxVa77JaqL/rYBaJHX4wlGqhn8Eyp6H6KTK5FjlNHGx+Ob1GFpiRpRJcQmUv3bYRh8YFHu3tXTF7QZIbqsIaqp9O/KotYq24KldSoc5M/H5af5ttzjk+4/r8nN8Xz+TU9XiFh3ubXG07eHqb6WfG8Y32qmu5z+9n8etev7s5P4j0b/crF4zem+7tOXh8hRS/we/Rv1iE9T+tdeeL353RqW2HhX8wl45iKqFT2Tp6Y8aCofEAMd0bSb6fqxirsADc4/O9XE9ZrKl+qg3VTzXVT4HPOX4PEwLge9DZyoV/hx8fqVimaBvbM5N5jNp7D/emg19h/qAVzi+x/12gp+D8MjY0v4RYgPmlmfF7v78ujN/x9eusy6S151/uM3h3enTDzo6Dhx+/zpJ2pZzBvcvhx0P8XmbZln+H0+fvX76P62eQWI6Hh1rvloOHr9++/P795fvnA+b4lzW/z7ID7wnl8RfjY+hpffr2DwLa5WHvbjnoXnCzxxONb+Mqd0e+9Hv8/jYg+nd9z3axOw5CEoVctbn+Bj7b0T/eZpvx/oh9tNMJ/3nXfrEbDl4Q7uV0Pbn20779yD9rSSnhF+9RPMHjxy7gEW72PQ/3noM+1E5ZS77U3hfan72//2UPkLZ7vtu/fQfhXi/k34rf8/r+Uh/v/dtGRErwZ/soN+GOiOf8PO/p41mTXjtNejWOH2tASKPHXb73Bw4C2EgxXrJk5Us3489zfr+FePy7fbwrB7Gv+L582qyPz/UzS36wBARG9a7Et7x8db8vl/FpjPvrtvTxgWa9U8H4sfLl9Ie9bwfvOM2uTlmy0OLP9PGTfmZzfBt/4A9C99ZrYt9hfGzo40d+L2/69797+fX9pT6e9j8Xxahsj/Xav8u9EfSdry2807klrT7p40mrr3f08Sv/oJe8/F2/m3sH49l6szyuT6/3123p45c1M8zIx3+1vZ2S6AW33y/M/ymx0Oet9fGoSW/zRVUKkgDEHTj4j/zjkL0uW/B7pWcq+019PCrbo/PLEg+S3j9rwAs4Bjn+utAHHF7LUWV/Tx//a4b3v9BXXJf6isMXK3f0Mxv6+N/hlacXII/g5T+KEAi2ywsMu6dZ+31TXj/zgD4eHvGHr05lcDyyvgIj+N+8vL5ixLv++PTUT/o3WoLobunjkVKfn/7/Xm+64V16N/TxyUIfn6clCgziEme9eVIC8bdpWZMJZVdJmWKJNzTlJS6eDmmZk6nE/aZpWo0owOUApWLgkkwNoVQKhfeP6+NRxs6yOa+Pt8VS2d7d0cfbtT6+Yn08bc6Nrb2HUrN+ZsnvH9HH67/Vx6uVPt7pa9+jj3fLAKOyfb2/7p/o4zOee9/Wx6PstU6dPj5lfXxiV8r2MlS2Jwt9fLNlSptReF/ifqyVPv4mMMRHwO/n+ngT7G/fPZ9mVx+fbejjjZrpV1fnX93Vxzt9Le9BVjv6+P3zr+7o4xXVApbrb4/q47eV68mesn3TtCeZT7y2flM/n+wC7+vjFT+8x/fn3NPHG7Ojn2nm5189qI83gT4+rN/L1f7dB/XxsZLL9f15frmhj4+XMnYIu9xu6uMnZTuY5mL4eFsfzyj4YUMf3/kQdyanj48f0cfLf6ePl/fOv9rVx6sNfTylgffp4++cfyX0n+jjR37vBleSsdsixfVyNyxWa328Xevji7v6+LLc1sfHfohuYCL5gD4e94f1eCYVduOa9PEFL0MxxalwfaufZOwlKdtR/+H18crr41HJK1j/kUY96eNReI8oXaiyD/Tx/X19vNJYUy/VY+dfTfr9G/oZ89D5Vy5+t/XxI793J/f586/o/D8h3TFVdHgUrV8qLz4pKR4mZbs//0qG519R/uNdPsv9Oe3E3R/Xx/P45o6p+lv9DJ8SyfvrglvoAcXrZ/D8K4dyRx+vUaamtKnun3+lFR9edvv8q8aY5P75V3WIckMfb1A/Q/ye5qBl3yNy0QOMgikydoueTq6yPfin8PA3MEG3H5Xtyaiyl4RSGg3AuEsKhfcLFAYGlJxQBjLt6ePzUR9fFKinzskUt0UFpopMCZ6nF+sWaTjK2PHwPL6kXavsETjVnIJSRrEBSswoVeFQHHC5q4/PJSmZwvNpOhe/4p5+Zmf8LY26eT6N3hh/1aTPm+vjcxHy++z2+VcP8nvjBi8TAq/5fRC/eq2Pj2unSccDKXH8wGMOLTW7tW5IicmEzY76S5Kx4/mJtsjJZPWobLe21iMKjh/vR9GMglr9hT5eqdn5V3fiN9gfu3X+VWzu6eOHdfy2XoXzyPlXgX5GPKiPD/m9KaKVPj7YXzfp4xf8nvlBoI/3yvYbx876v2+Y9vXxyRplSx+/AeyXE7b08czM3fz8XfqZO/r4jfOvgvNt/fzcxW+8q4/fO/9qoY8Pzr96UB+/d76enNcPpvp9qI/v1sr2LZMTwy8Pn/5jlDo4j3qBUu/p46WY8fu1Pl7c1cf3S3088XsRHG7g9fG+tuJQlvz+/wArxainlJr4rAAAAABJRU5ErkJggg==",
+      "status": true,
+      "id": 12
+    },
+    {
+      "name": "sdasdsad",
+      "imageUrl": "aaaa",
+      "status": true,
+      "id": 17
+    },
+    {
+      "name": "aaa",
+      "imageUrl": "aaa",
+      "status": true,
+      "id": 18
+    },
+    {
+      "name": "Project",
+      "limit": 10000,
+      "monthId": 2,
+      "id": 20
+    },
+    {
+      "name": "sấdd",
+      "limit": 223112,
+      "monthId": 2,
+      "id": 22
+    },
+    {
+      "name": "anh đẹp trai 111222",
+      "limit": 110000,
+      "monthId": 2,
+      "id": 23
+    },
+    {
+      "name": "dadad",
+      "limit": 13123123,
+      "monthId": 2,
+      "id": 24
+    },
+    {
+      "name": "ccccc",
+      "limit": 211111,
+      "monthId": 2,
+      "id": 25
+    },
+    {
+      "name": "qqqq",
+      "limit": 1111,
+      "monthId": 2,
+      "id": 26
+    },
+    {
+      "name": "ddđ",
+      "limit": 111222,
+      "monthId": 2,
+      "id": 27
+    },
+    {
+      "name": "ffff",
+      "limit": 222222,
+      "monthId": 2,
+      "id": 28
     }
   ],
   "monthlyCategories": [
     {
       "id": 1,
-      "month": "2025-09-30"
-    }
-  ],
-  "monthlyCategoryDetails": [
-    {
-      "id": 1,
-      "monthlyCategoryId": 1,
-      "categoryId": 1,
-      "budget": 300000
+      "month": "2025-09-30",
+      "totalBudget": 100000
     },
     {
-      "id": 2,
-      "monthlyCategoryId": 1,
-      "categoryId": 2,
-      "budget": 500000
+      "month": "2025-10-01",
+      "totalBudget": 2312311313213123,
+      "id": 2
+    },
+    {
+      "month": "2025-10-01",
+      "totalBudget": 0,
+      "id": 3
+    },
+    {
+      "month": "2025-06-01",
+      "totalBudget": 111,
+      "id": 4
+    },
+    {
+      "month": "2025-01-01",
+      "totalBudget": 0,
+      "id": 5
+    },
+    {
+      "month": "2025-11-01",
+      "totalBudget": 1111111,
+      "id": 6
+    },
+    {
+      "month": "2025-05-01",
+      "totalBudget": 1111,
+      "id": 7
+    },
+    {
+      "month": "2025-12-01",
+      "totalBudget": 1000000000,
+      "id": 8
+    },
+    {
+      "month": "2025-07-01",
+      "totalBudget": 0,
+      "id": 9
+    },
+    {
+      "month": "2025-02-01",
+      "totalBudget": 0,
+      "id": 10
+    },
+    {
+      "month": "2025-03-01",
+      "totalBudget": 0,
+      "id": 11
+    },
+    {
+      "month": "2025-04-01",
+      "totalBudget": 0,
+      "id": 12
     }
   ],
+  "monthlyCategoryDetails": [],
   "transactions": [
     {
-      "id": 1,
-      "createdDate": "2025-10-01",
-      "total": 150000,
-      "description": "Tiền đi chơi",
-      "categoryId": 1,
-      "monthlyCategoryId": 1
+      "monthId": 2,
+      "categoryId": 22,
+      "amount": 223112,
+      "type": "expense",
+      "note": "Khởi tạo danh mục \"sấdd\"",
+      "createdAt": "2025-10-10T05:16:47.474Z",
+      "id": 4
+    },
+    {
+      "monthId": 2,
+      "categoryId": 20,
+      "amount": 100000,
+      "type": "expense",
+      "note": "tiền làm dự án",
+      "createdAt": "2025-10-13T06:40:20.702Z",
+      "id": 5
+    },
+    {
+      "monthId": 2,
+      "categoryId": 22,
+      "amount": 200000,
+      "type": "expense",
+      "note": "blebleble",
+      "createdAt": "2025-10-13T06:40:39.350Z",
+      "id": 6
+    },
+    {
+      "monthId": 4,
+      "categoryId": 22,
+      "amount": 2312312,
+      "type": "expense",
+      "note": "3123",
+      "createdAt": "2025-10-13T06:52:53.112Z",
+      "id": 7
+    },
+    {
+      "monthId": 2,
+      "categoryId": 24,
+      "amount": 13123123,
+      "type": "expense",
+      "note": "Khởi tạo danh mục \"dadad\"",
+      "createdAt": "2025-10-13T06:53:42.470Z",
+      "id": 9
+    },
+    {
+      "monthId": 2,
+      "categoryId": 25,
+      "amount": 211111,
+      "type": "expense",
+      "note": "Khởi tạo danh mục \"ccccc\"",
+      "createdAt": "2025-10-13T06:53:50.357Z",
+      "id": 10
+    },
+    {
+      "monthId": 2,
+      "categoryId": 26,
+      "amount": 1111,
+      "type": "expense",
+      "note": "Khởi tạo danh mục \"qqqq\"",
+      "createdAt": "2025-10-13T06:53:57.737Z",
+      "id": 11
+    },
+    {
+      "monthId": 2,
+      "categoryId": 27,
+      "amount": 111222,
+      "type": "expense",
+      "note": "Khởi tạo danh mục \"ddđ\"",
+      "createdAt": "2025-10-13T06:54:04.373Z",
+      "id": 12
+    },
+    {
+      "monthId": 2,
+      "categoryId": 28,
+      "amount": 222222,
+      "type": "expense",
+      "note": "Khởi tạo danh mục \"ffff\"",
+      "createdAt": "2025-10-13T06:54:13.723Z",
+      "id": 13
+    },
+    {
+      "monthId": 2,
+      "categoryId": 20,
+      "amount": 1000000,
+      "type": "expense",
+      "note": "dự án",
+      "createdAt": "2025-10-13T08:31:49.065Z",
+      "id": 15
     }
   ]
 }

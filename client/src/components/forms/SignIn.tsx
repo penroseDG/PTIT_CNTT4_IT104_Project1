@@ -31,37 +31,57 @@ export default function SignIn() {
   return Object.keys(currentErrors).length === 0;
 };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSuccessMessage("");
-    setFormErrors({});
-    if (!validateInputs()) return;
+ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  setSuccessMessage("");
+  setFormErrors({});
+  if (!validateInputs()) return;
 
-    setIsSubmitting(true);
-    try {
-      const response = await axios.get("http://localhost:8080/users", {
-        params: { email: emailValue, password: passwordValue },
-      });
-      const users = Array.isArray(response.data) ? response.data : [];
-      if (users.length === 0) {
-        setFormErrors({ form: "Email hoặc mật khẩu không đúng." });
-        return;
-      }
-      // Đăng nhập thành công chuyển về Home 
-      setSuccessMessage("Sign In Successfully");
-      setTimeout(() => navigate("/userhome", { replace: true }), 800);
-    } catch {
-      setFormErrors({ form: "Không thể kết nối máy chủ. Kiểm tra json-server." });
-    } finally {
-      setIsSubmitting(false);
+  setIsSubmitting(true);
+  try {
+    // 1) Tìm user theo email + password
+    const res = await axios.get("http://localhost:8080/users", {
+      params: {
+        email: emailValue.trim().toLowerCase(),
+        password: passwordValue,
+      },
+    });
+
+    const users = Array.isArray(res.data) ? res.data : [];
+    if (users.length === 0) {
+      setFormErrors({ form: "Email hoặc mật khẩu không đúng." });
+      return;
     }
-  };
+
+    const user = users[0];
+
+    // 2) Chỉ cho đăng nhập khi status === true
+    if (user.status !== true) {
+      setFormErrors({ form: "Tài khoản của bạn đang bị khóa. Vui lòng liên hệ quản trị viên." });
+      return;
+    }
+
+    // 3) Đăng nhập thành công
+    localStorage.setItem("currentUser", JSON.stringify({
+      id: user.id,
+      email: user.email,
+      fullName: user.fullName ?? "",
+    }));
+
+    setSuccessMessage("Sign In Successfully");
+    setTimeout(() => navigate("/userhome", { replace: true }), 800);
+  } catch {
+    setFormErrors({ form: "Không thể kết nối máy chủ. Kiểm tra json-server." });
+  } finally {
+    setIsSubmitting(false);
+  }
+};  
 
   const getInputClassName = (hasError?: string) =>
     `w-full rounded-md border px-3 py-2 outline-none focus:ring-1 ${
       hasError ? "border-red-500 focus:ring-red-200" : "border-gray-200 focus:ring-gray-300"
     }`;
-
+    
   return (
     <div className="h-screen w-screen bg-neutral-800 text-sm">
       <div className="relative">
@@ -70,7 +90,7 @@ export default function SignIn() {
 
         <div className="absolute left-1/2 top-[55%] w-full max-w-[340px] -translate-x-1/2 -translate-y-1/2">
           <div className="rounded-xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-sm">
-            <h2 className="mb-1 text-center text-[13px] font-semibold">🔐 Đăng nhập</h2>
+            <h2 className="mb-1 text-center text-[13px] font-semibold text-black">🔐 Đăng nhập</h2>
 
             {successMessage && (
               <p className="mb-2 text-center text-[12px] font-medium text-green-600">{successMessage}</p>
@@ -83,7 +103,7 @@ export default function SignIn() {
               <div>
                 <input
                   type="email"
-                  placeholder="Email here ..."
+                  placeholder="Username here ..."
                   value={emailValue}
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEmailValue(event.target.value)}
                   className={getInputClassName(formErrors.email)}
@@ -107,7 +127,7 @@ export default function SignIn() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-md bg-violet-600 py-2 text-white font-medium transition hover:bg-violet-700 active:scale-[.99] disabled:opacity-60"
+                className="w-full rounded-md bg-[#4F46E5] py-2 text-white font-medium transition hover:bg-violet-700 active:scale-[.99] disabled:opacity-60"
               >
                 {isSubmitting ? "Đang xử lý..." : "Sign In"}
               </button>
