@@ -13,20 +13,25 @@ export default function UserSidebar() {
 
   return (
     <aside className="fixed top-[80px] left-4 md:left-8 z-40 flex flex-col gap-3">
-      {sidebarItems.map(({ name, icon: Icon, path }) => (
-        <button
-          key={path}
-          onClick={() => navigate(path)}
-          className={`flex items-center gap-2 w-[130px] px-3 py-2 rounded-md text-sm border shadow-md transition-all ${
-            pathname === path
-              ? "bg-indigo-600 text-white border-indigo-600"
-              : "bg-white text-gray-700 hover:bg-gray-100 border-gray-200"
-          }`}
-        >
-          <Icon size={16} />
-          {name}
-        </button>
-      ))}
+      {sidebarItems.map(({ name, icon: Icon, path }) => {
+        const isActive =
+          pathname === path || (pathname === "/userhome" && path === "/userhome");
+
+        return (
+          <button
+            key={path}
+            onClick={() => navigate(path)}
+            className={`flex items-center gap-2 w-[130px] px-3 py-2 rounded-md text-sm border shadow-md transition-all ${
+              isActive
+                ? "bg-indigo-600 text-white border-indigo-600"
+                : "bg-white text-gray-700 hover:bg-gray-100 border-gray-200"
+            }`}
+          >
+            <Icon size={16} className={isActive ? "text-white" : "text-gray-600"} />
+            {name}
+          </button>
+        );
+      })}
     </aside>
   );
 }

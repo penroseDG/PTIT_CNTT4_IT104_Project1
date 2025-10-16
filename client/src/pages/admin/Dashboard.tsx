@@ -33,14 +33,12 @@ export default function Dashboard() {
     { month: "Jan", value1: 96000, value2: 49000 },
   ];
 
-  // Thu nhỏ dataset dựa theo period để biểu đồ thoáng hơn
   const data = useMemo(() => {
     switch (selectedPeriod) {
       case "6 Months":
         return baseData.slice(-6);
       case "30 Days":
       case "7 Days":
-        // demo: vẫn dùng dữ liệu tháng, thực tế bạn đổi sang daily data là đẹp nhất
         return baseData.slice(-4);
       default:
         return baseData;

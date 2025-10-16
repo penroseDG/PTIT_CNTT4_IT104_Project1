@@ -1,140 +1,134 @@
-import React, { useEffect } from "react";
-import { Modal, Form, Input, Select, Button, message } from "antd";
-import axios from "axios";
+// src/components/user/ChangeInfoModal.tsx
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../hooks/useRedux";
+import {
+  selectAuthUser,
+  selectAuthLoading,
+  selectAuthError,
+  updateProfile,
+  type AuthUser,
+} from "../../../store/slice/authSlice";
 
-// ====== Kiểu User của bạn ======
-export interface User {
-  id: number;
-  fullName: string;
-  email: string;
-  phone: string;
-  gender: boolean | null; // true = Male, false = Female, null = —
-  status: boolean | null;
-}
+export default function ChangeInfoModal({ open, onClose }: { open: boolean; onClose: () => void; }) {
+  const dispatch = useAppDispatch();
+  const me = useAppSelector(selectAuthUser);
+  const loading = useAppSelector(selectAuthLoading);
+  const globalError = useAppSelector(selectAuthError);
 
-type ModalChangeInforProps = {
-  open: boolean;
-  onClose: () => void;
-  user: User;                        // dữ liệu hiện tại
-  onSaved?: (updated: User) => void; // callback khi lưu thành công
-};
-
-const API_USERS = "http://localhost:8080/users";
-
-const genderToLabel = (g: boolean | null) =>
-  g === true ? "Male" : g === false ? "Female" : "";
-
-const labelToGender = (s: string): boolean | null =>
-  s === "Male" ? true : s === "Female" ? false : null;
-
-export default function ModalChangeInfor({
-  open,
-  onClose,
-  user,
-  onSaved,
-}: ModalChangeInforProps) {
-  const [form] = Form.useForm();
+  const [form, setForm] = useState({ fullName: "", email: "", phone: "", gender: "Male" as "Male"|"Female"|"Other" });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [ok, setOk] = useState<string | null>(null);
 
   useEffect(() => {
-    if (open && user) {
-      form.setFieldsValue({
-        fullName: user.fullName || "",
-        email: user.email || "",
-        phone: user.phone || "",
-        gender: genderToLabel(user.gender),
-      });
-    }
-  }, [open, user, form]);
+    if (!open || !me) return;
+    setForm({
+      fullName: me.fullName ?? "",
+      email: me.email ?? "",
+      phone: me.phone ?? "",
+      gender: (me.gender as any) ?? "Male",
+    });
+    setSubmitError(null);
+    setOk(null);
+    setErrors({});
+  }, [open, me]);
 
-  const handleFinish = async (values: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setForm((s) => ({ ...s, [name]: value }));
+  };
+
+  const validate = () => {
+    const err: Record<string, string> = {};
+    if (!form.fullName.trim()) err.fullName = "Name is required";
+    if (!form.email.trim()) err.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) err.email = "Email is invalid";
+    if (form.phone && !/^[0-9+\-()\s]{8,20}$/.test(form.phone)) err.phone = "Phone is invalid";
+    setErrors(err);
+    return Object.keys(err).length === 0;
+  };
+
+  const onSave = async () => {
+    setSubmitError(null); setOk(null);
+    if (!me) { setSubmitError("Bạn chưa đăng nhập."); return; }
+    if (!validate()) return;
+    const payload: Partial<AuthUser> = {
+      id: me.id,
+      fullName: form.fullName,
+      email: form.email,
+      phone: form.phone,
+      gender: form.gender,
+    };
     try {
-      const payload: Partial<User> = {
-        fullName: values.fullName.trim(),
-        email: values.email.trim().toLowerCase(),
-        phone: values.phone.trim(),
-        gender: labelToGender(values.gender),
-      };
-
-      const res = await axios.patch<User>(`${API_USERS}/${user.id}`, payload);
-      message.success("Cập nhật thông tin thành công!");
-      onSaved?.(res.data);
+      await dispatch(updateProfile(payload)).unwrap();
+      setOk("Updated successfully.");
       onClose();
-    } catch (e) {
-      message.error("Không thể lưu. Kiểm tra json-server và thử lại.");
+    } catch (e: any) {
+      setSubmitError(typeof e === "string" ? e : "Update failed.");
     }
   };
 
+  if (!open) return null;
+
   return (
-    <Modal
-      open={open}
-      title="Change Information"
-      onCancel={onClose}
-      footer={null}
-      destroyOnClose
-    >
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={handleFinish}
-        requiredMark="optional"
-      >
-        <Form.Item
-          label="Name"
-          name="fullName"
-          rules={[
-            { required: true, message: "Please enter your name" },
-            { min: 2, message: "Name is too short" },
-          ]}
-        >
-          <Input placeholder="Nhap ten vao day " />
-        </Form.Item>
-
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            { required: true, message: "Please enter your email" },
-            { type: "email", message: "Invalid email" },
-          ]}
-        >
-          <Input placeholder="email@example.com" />
-        </Form.Item>
-
-        <Form.Item
-          label="Phone"
-          name="phone"
-          rules={[
-            { required: true, message: "Please enter your phone number" },
-            {
-              pattern: /^[0-9+\-()\s]{8,20}$/,
-              message: "Invalid phone number",
-            },
-          ]}
-        >
-          <Input placeholder="0987654321" />
-        </Form.Item>
-
-        <Form.Item
-          label="Gender"
-          name="gender"
-          rules={[{ required: true, message: "Please select gender" }]}
-        >
-          <Select
-            placeholder="Select gender"
-            options={[
-              { label: "Male", value: "Male" },
-              { label: "Female", value: "Female" },
-            ]}
-          />
-        </Form.Item>
-
-        <div className="flex justify-end gap-2">
-          <Button onClick={onClose}>Cancel</Button>
-          <Button type="primary" htmlType="submit">
-            Save
-          </Button>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="relative w-[90%] max-w-lg rounded-2xl bg-white shadow-xl">
+        <div className="flex items-center justify-between p-5 border-b">
+          <h3 className="text-lg font-semibold">Change Information</h3>
+          <button onClick={onClose} className="rounded-md p-1.5 hover:bg-gray-100 text-gray-500">✕</button>
         </div>
-      </Form>
-    </Modal>
+
+        <div className="p-5 space-y-4">
+          {submitError && <div className="text-red-600 text-sm">{submitError}</div>}
+          {globalError && <div className="text-red-600 text-sm">{globalError}</div>}
+          {ok && <div className="text-green-600 text-sm">{ok}</div>}
+
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Name <span className="text-red-500">*</span></label>
+            <input name="fullName" value={form.fullName} onChange={onChange}
+              disabled={loading}
+              className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-indigo-500 ${errors.fullName ? "border-red-400" : "border-gray-300"}`} />
+            {errors.fullName && <p className="text-sm text-red-500 mt-1">{errors.fullName}</p>}
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Email <span className="text-red-500">*</span></label>
+            <input name="email" type="email" value={form.email} onChange={onChange}
+              disabled={loading}
+              className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-indigo-500 ${errors.email ? "border-red-400" : "border-gray-300"}`} />
+            {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Phone</label>
+            <input name="phone" value={form.phone} onChange={onChange}
+              disabled={loading}
+              className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-indigo-500 ${errors.phone ? "border-red-400" : "border-gray-300"}`} />
+            {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
+          </div>
+
+          {/* Gender */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Gender</label>
+            <select name="gender" value={form.gender} onChange={onChange}
+              disabled={loading}
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500">
+              <option>Male</option><option>Female</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end gap-3 p-5 border-t">
+          <button onClick={onClose} disabled={loading} className="px-5 py-2 rounded-lg border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">Cancel</button>
+          <button onClick={onSave} disabled={loading} className="px-5 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 disabled:bg-indigo-300">
+            {loading ? "Saving..." : "Save"}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }

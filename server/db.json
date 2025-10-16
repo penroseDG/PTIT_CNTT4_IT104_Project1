@@ -177,6 +177,12 @@
       "limit": 30000000,
       "monthId": 6,
       "id": 31
+    },
+    {
+      "name": "superidol",
+      "limit": 100000,
+      "monthId": 8,
+      "id": 32
     }
   ],
   "monthlyCategories": [
@@ -217,7 +223,7 @@
     },
     {
       "month": "2025-12-01",
-      "totalBudget": 1000000000,
+      "totalBudget": 100000,
       "id": 8
     },
     {
@@ -305,6 +311,24 @@
       "note": "đi hốc bún đậu mắm tem",
       "createdAt": "2025-10-14T14:36:12.292Z",
       "id": 13
+    },
+    {
+      "monthId": 8,
+      "categoryId": 32,
+      "amount": 10000,
+      "type": "expense",
+      "note": "Khởi tạo danh mục \"superidol\"",
+      "createdAt": "2025-10-16T05:33:26.362Z",
+      "id": 14
+    },
+    {
+      "monthlyCategoryId": 8,
+      "categoryId": 32,
+      "amount": 1000000,
+      "type": "expense",
+      "note": "oke oke",
+      "createdAt": "2025-10-16T05:34:20.314Z",
+      "id": 15
     }
   ]
 }
