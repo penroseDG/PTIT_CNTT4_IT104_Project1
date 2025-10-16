@@ -95,8 +95,6 @@ export default function Category() {
           { name, limit }
         );
         setList((prev) => prev.map((x) => (x.id === editing.id ? { ...data, limit } : x)));
-
-        // Nếu bạn muốn điều chỉnh lại giao dịch theo limit mới, xử lý tại đây.
         await dispatch(fetchTransactions(currentMonthData.id)).unwrap();
       } else {
         // CREATE category
@@ -108,11 +106,10 @@ export default function Category() {
 
         setList((prev) => [{ ...createdCat, limit: Number(createdCat.limit) || 0 }, ...prev]);
 
-        // ✅ Ghi transaction CHI bằng đúng limit để "Số tiền còn lại" giảm ngay
         await axios.post(`${API_BASE}/transactions`, {
           monthId: currentMonthData.id,
           categoryId: createdCat.id,
-          amount: limit,             // số tiền chi
+          amount: limit,            
           type: "expense",
           note: `Khởi tạo danh mục "${name}"`,
           createdAt: new Date().toISOString(),
