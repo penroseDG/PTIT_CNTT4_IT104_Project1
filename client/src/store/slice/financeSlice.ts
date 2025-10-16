@@ -1,4 +1,3 @@
-// src/store/slice/financeSlice.ts
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { FinanceState, IMonthlyCategory, ITransaction } from "../../utils/type";
@@ -6,7 +5,15 @@ import type { FinanceState, IMonthlyCategory, ITransaction } from "../../utils/t
 const MONTHLY_API = "http://localhost:8080/monthlyCategories";
 const TRANS_API   = "http://localhost:8080/transactions";
 
-// Lấy/khởi tạo bản ghi tháng 
+// === Tổng chi: expense (+), income (-). Ưu tiên amount, fallback total (legacy)
+const sumSpent = (txns: ITransaction[]) =>
+  txns.reduce((sum, t) => {
+    const amt = Number(t?.amount ?? t?.total ?? 0);
+    if (!isFinite(amt)) return sum;
+    return sum + (t?.type === "income" ? -amt : amt);
+  }, 0);
+
+// Lấy/khởi tạo bản ghi tháng
 export const fetchMonthlyCategory = createAsyncThunk<
   IMonthlyCategory,
   string,
@@ -18,7 +25,6 @@ export const fetchMonthlyCategory = createAsyncThunk<
     });
     if (res.data.length > 0) return res.data[0];
 
-    // nếu chưa có thì tạo mới với totalBudget=0
     const created = await axios.post<IMonthlyCategory>(MONTHLY_API, {
       month: `${monthYYYYMM}-01`,
       totalBudget: 0,
@@ -29,21 +35,19 @@ export const fetchMonthlyCategory = createAsyncThunk<
   }
 });
 
+// Lấy giao dịch theo monthlyCategoryId
 export const fetchTransactions = createAsyncThunk<
   ITransaction[],
   number,
   { rejectValue: string }
 >("finance/fetchTransactions", async (monthlyCategoryId, { rejectWithValue }) => {
   try {
-    const res = await axios.get<ITransaction[]>(TRANS_API, {
-      params: { monthlyCategoryId }, // nếu db đã đổi tên key
-    });
+    const res = await axios.get<ITransaction[]>(TRANS_API, { params: { monthlyCategoryId } });
     return res.data;
   } catch {
     return rejectWithValue("Không tải được giao dịch.");
   }
 });
-
 
 export const updateMonthlyBudget = createAsyncThunk<
   IMonthlyCategory,
@@ -78,14 +82,13 @@ const financeSlice = createSlice({
     },
     recomputeRemaining(state) {
       if (!state.currentMonthData) { state.remaining = 0; return; }
-      const spent = state.transactions.reduce((sum, t) => sum + (t.total || 0), 0);
+      const spent = sumSpent(state.transactions);
       const budget = state.currentMonthData.totalBudget || 0;
-      state.remaining = Math.max(0, budget - spent);
-      state.warningMessage = spent > budget ? "Chi tiêu đã vượt quá ngân sách!" : "";
+      state.remaining = budget - spent; // ✅ cho phép âm
+      state.warningMessage = state.remaining < 0 ? "Chi tiêu đã vượt quá ngân sách!" : "";
     },
   },
   extraReducers: (b) => {
-    // fetch month
     b.addCase(fetchMonthlyCategory.pending, (s) => { s.loading = true; s.error = null; });
     b.addCase(fetchMonthlyCategory.fulfilled, (s, a) => {
       s.loading = false;
@@ -97,15 +100,16 @@ const financeSlice = createSlice({
       s.loading = false; s.error = a.payload || "Error";
     });
 
-    // fetch transactions
     b.addCase(fetchTransactions.pending, (s) => { s.loading = true; s.error = null; });
     b.addCase(fetchTransactions.fulfilled, (s, a) => {
-      s.loading = false; s.transactions = a.payload;
+      s.loading = false;
+      s.transactions = a.payload;
+
       if (s.currentMonthData) {
-        const spent = s.transactions.reduce((sum, t) => sum + (t.total || 0), 0);
+        const spent = sumSpent(s.transactions);
         const budget = s.currentMonthData.totalBudget || 0;
-        s.remaining = Math.max(0, budget - spent);
-        s.warningMessage = spent > budget ? "Chi tiêu đã vượt quá ngân sách!" : "";
+        s.remaining = budget - spent; // ✅ cho phép âm
+        s.warningMessage = s.remaining < 0 ? "Chi tiêu đã vượt quá ngân sách!" : "";
       } else {
         s.remaining = 0; s.warningMessage = "";
       }
@@ -114,7 +118,6 @@ const financeSlice = createSlice({
       s.loading = false; s.error = a.payload || "Error";
     });
 
-    // update budget
     b.addCase(updateMonthlyBudget.pending, (s) => { s.loading = true; s.error = null; });
     b.addCase(updateMonthlyBudget.fulfilled, (s, a) => {
       s.loading = false;
@@ -122,10 +125,10 @@ const financeSlice = createSlice({
       const idx = s.monthlycategories.findIndex(m => m.id === a.payload.id);
       if (idx !== -1) s.monthlycategories[idx] = a.payload;
 
-      const spent = s.transactions.reduce((sum, t) => sum + (t.total || 0), 0);
+      const spent = sumSpent(s.transactions);
       const budget = a.payload.totalBudget || 0;
-      s.remaining = Math.max(0, budget - spent);
-      s.warningMessage = spent > budget ? "Chi tiêu đã vượt quá ngân sách!" : "";
+      s.remaining = budget - spent; // ✅ cho phép âm
+      s.warningMessage = s.remaining < 0 ? "Chi tiêu đã vượt quá ngân sách!" : "";
     });
     b.addCase(updateMonthlyBudget.rejected, (s, a) => {
       s.loading = false; s.error = a.payload || "Error";

@@ -39,13 +39,12 @@ export default function AdminSidebar({ onOpenLogout }: Props) {
       className="fixed left-0 z-20"
       style={{
         top: "60px",
-        width: "250px", // ✅ giảm chiều ngang
+        width: "250px", 
         height: "calc(100vh - 60px)",
         backgroundColor: "#F8F9FA",
         borderRight: "1px solid #DEE2E6",
       }}
     >
-      {/* Khoảng cách đầu theo Figma (60 header + spacing nhỏ hơn vì item thấp) */}
       <nav className="pt-[20px] flex flex-col gap-1">
         <SidebarItem to="dashboard">▦ Dashboard</SidebarItem>
         <SidebarItem to="users">👥 Users</SidebarItem>

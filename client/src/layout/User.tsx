@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../store/store";
 import {
@@ -7,7 +7,7 @@ import {
   fetchTransactions,
   updateMonthlyBudget,
   setSelectedMonth,
-} from "../store/slice/financeSlice";
+} from "../store/slice/financeSlice";   
 
 import UserHeader from "../components/common/user/UserHeader";
 import UserSidebar from "../components/common/user/UserSideBar";
@@ -48,14 +48,10 @@ export default function User() {
 
   return (
     <div className="min-h-screen bg-[#f7f7f9] text-gray-700">
-      {/* Header cố định */}
       <UserHeader />
-      {/* Sidebar (giả sử dạng fixed) */}
       <UserSidebar />
-
-      {/* Nội dung chính */}
+      {/* phần main */}
       <main className="pt-[80px] pb-5 px-4 max-w-5xl mx-auto space-y-6">
-        {/* ===== Header giới thiệu ===== */}
         <div className="bg-[#4F46E5] rounded-2xl p-8 text-white shadow-xl">
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-3xl">🎯</span>
@@ -67,8 +63,6 @@ export default function User() {
             Theo dõi ngân sách và thu chi hàng tháng dễ dàng
           </p>
         </div>
-
-        {/* Tiêu đề khối tài chính */}
         <div className="flex items-center justify-center gap-3 py-2">
           <span className="text-3xl">📊</span>
           <h2 className="text-2xl md:text-3xl font-semibold text-indigo-700">
@@ -76,7 +70,7 @@ export default function User() {
           </h2>
         </div>
 
-        {/* ===== Số tiền còn lại ===== */}
+        {/* Số tiền còn lại  */}
         <div className="bg-white rounded-2xl p-5 shadow-lg border border-gray-100 text-center">
           <p className="text-gray-600 mb-2 text-sm md:text-base">Số tiền còn lại</p>
           <p className="text-4xl text-green-500">
@@ -84,7 +78,7 @@ export default function User() {
           </p>
         </div>
 
-        {/* ===== Chọn tháng ===== */}
+        {/* Chọn tháng */}
         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
           <div className="flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 text-gray-700">
@@ -100,7 +94,7 @@ export default function User() {
           </div>
         </div>
 
-        {/* ===== Ngân sách tháng ===== */}
+        {/* Ngân sách tháng */}
         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
           <div className="flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 text-gray-700">
@@ -126,14 +120,12 @@ export default function User() {
           </div>
         </div>
 
-        {/* ===== Cảnh báo chi tiêu ===== */}
+        {/* Cảnh báo chi tiêu */}
         {warningMessage && (
           <div className="bg-red-50 border border-red-200 text-red-600 rounded-2xl p-4 shadow-sm text-center">
             {warningMessage}
           </div>
         )}
-
-        {/* ===== Vùng render trang con ===== */}
         <Outlet />
       </main>
     </div>

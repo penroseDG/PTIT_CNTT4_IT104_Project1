@@ -34,17 +34,17 @@ export interface UserManagerState {
   error: string | null;
 }   
 
-export interface ITransaction {
-  amount: any;
-  note: string;
-  monthId: number | undefined;
-  id: number;
-  createdDate: string;
-  total: number;
-  description: string;
-  categoryId: number;
-  monthlycategoryId: number;
-}
+// export interface ITransaction {
+//   amount: any;
+//   note: string;
+//   monthId: number | undefined;
+//   id: number;
+//   createdDate: string;
+//   total: number;
+//   description: string;
+//   categoryId: number;
+//   monthlycategoryId: number;
+// }
 
 export interface IMonthlyCategory {
   id: number;
@@ -64,7 +64,33 @@ export interface FinanceState {
   error: string | null;
 }
 
+export interface IMonthlyCategory {
+  id: number;
+  month: string;       
+  totalBudget: number;
+}
 
+export type ITransaction = {
+  id: number;
+  monthlyCategoryId: number;
+  categoryId: number;
+  amount: number;
+  note: string;
+  type?: "expense" | "income";
+  createdAt?: string;
+  monthId?: number;  
+  total?: number;    
+};
 
+export interface FinanceState {
+  monthlycategories: IMonthlyCategory[];
+  transactions: ITransaction[];
+  selectedMonth: string;
+  currentMonthData: IMonthlyCategory | null;
+  remaining: number;
+  warningMessage: string;
+  loading: boolean;
+  error: string | null;
+}
 
 

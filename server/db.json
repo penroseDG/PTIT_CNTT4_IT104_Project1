@@ -47,6 +47,12 @@
       "password": "111111",
       "id": 6,
       "status": true
+    },
+    {
+      "email": "trangancut@gmail.com",
+      "password": "trangancut123456",
+      "id": 7,
+      "status": true
     }
   ],
   "categories": [
@@ -153,6 +159,24 @@
       "limit": 222222,
       "monthId": 2,
       "id": 28
+    },
+    {
+      "name": "tiền đi chơi vợ iu",
+      "limit": 100000,
+      "monthId": 6,
+      "id": 29
+    },
+    {
+      "name": "tiền ăn",
+      "limit": 30000000,
+      "monthId": 6,
+      "id": 30
+    },
+    {
+      "name": "tiền sửa mũi",
+      "limit": 30000000,
+      "monthId": 6,
+      "id": 31
     }
   ],
   "monthlyCategories": [
@@ -163,7 +187,7 @@
     },
     {
       "month": "2025-10-01",
-      "totalBudget": 2312311313213123,
+      "totalBudget": 10000000000,
       "id": 2
     },
     {
@@ -183,7 +207,7 @@
     },
     {
       "month": "2025-11-01",
-      "totalBudget": 1111111,
+      "totalBudget": 500000000,
       "id": 6
     },
     {
@@ -220,33 +244,6 @@
   "monthlyCategoryDetails": [],
   "transactions": [
     {
-      "monthId": 2,
-      "categoryId": 22,
-      "amount": 223112,
-      "type": "expense",
-      "note": "Khởi tạo danh mục \"sấdd\"",
-      "createdAt": "2025-10-10T05:16:47.474Z",
-      "id": 4
-    },
-    {
-      "monthId": 2,
-      "categoryId": 20,
-      "amount": 100000,
-      "type": "expense",
-      "note": "tiền làm dự án",
-      "createdAt": "2025-10-13T06:40:20.702Z",
-      "id": 5
-    },
-    {
-      "monthId": 2,
-      "categoryId": 22,
-      "amount": 200000,
-      "type": "expense",
-      "note": "blebleble",
-      "createdAt": "2025-10-13T06:40:39.350Z",
-      "id": 6
-    },
-    {
       "monthId": 4,
       "categoryId": 22,
       "amount": 2312312,
@@ -256,58 +253,58 @@
       "id": 7
     },
     {
-      "monthId": 2,
-      "categoryId": 24,
-      "amount": 13123123,
+      "monthlyCategoryId": 2,
+      "categoryId": 20,
+      "amount": 20000,
       "type": "expense",
-      "note": "Khởi tạo danh mục \"dadad\"",
-      "createdAt": "2025-10-13T06:53:42.470Z",
+      "note": "oke",
+      "createdAt": "2025-10-14T14:28:27.393Z",
+      "id": 8
+    },
+    {
+      "monthlyCategoryId": 2,
+      "categoryId": 22,
+      "amount": 50000000,
+      "type": "expense",
+      "note": "ooo",
+      "createdAt": "2025-10-14T14:28:43.329Z",
       "id": 9
     },
     {
-      "monthId": 2,
-      "categoryId": 25,
-      "amount": 211111,
+      "monthId": 6,
+      "categoryId": 29,
+      "amount": 100000,
       "type": "expense",
-      "note": "Khởi tạo danh mục \"ccccc\"",
-      "createdAt": "2025-10-13T06:53:50.357Z",
+      "note": "Khởi tạo danh mục \"tiền đi chơi vợ iu\"",
+      "createdAt": "2025-10-14T14:34:37.566Z",
       "id": 10
     },
     {
-      "monthId": 2,
-      "categoryId": 26,
-      "amount": 1111,
+      "monthId": 6,
+      "categoryId": 30,
+      "amount": 30000000,
       "type": "expense",
-      "note": "Khởi tạo danh mục \"qqqq\"",
-      "createdAt": "2025-10-13T06:53:57.737Z",
+      "note": "Khởi tạo danh mục \"tiền ăn\"",
+      "createdAt": "2025-10-14T14:35:03.885Z",
       "id": 11
     },
     {
-      "monthId": 2,
-      "categoryId": 27,
-      "amount": 111222,
+      "monthId": 6,
+      "categoryId": 31,
+      "amount": 10000000,
       "type": "expense",
-      "note": "Khởi tạo danh mục \"ddđ\"",
-      "createdAt": "2025-10-13T06:54:04.373Z",
+      "note": "Khởi tạo danh mục \"tiền sửa mũi\"",
+      "createdAt": "2025-10-14T14:35:25.352Z",
       "id": 12
     },
     {
-      "monthId": 2,
-      "categoryId": 28,
-      "amount": 222222,
+      "monthlyCategoryId": 6,
+      "categoryId": 29,
+      "amount": 20000,
       "type": "expense",
-      "note": "Khởi tạo danh mục \"ffff\"",
-      "createdAt": "2025-10-13T06:54:13.723Z",
+      "note": "đi hốc bún đậu mắm tem",
+      "createdAt": "2025-10-14T14:36:12.292Z",
       "id": 13
-    },
-    {
-      "monthId": 2,
-      "categoryId": 20,
-      "amount": 1000000,
-      "type": "expense",
-      "note": "dự án",
-      "createdAt": "2025-10-13T08:31:49.065Z",
-      "id": 15
     }
   ]
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../../store/store";
 import { changePassword } from "../../../store/slice/authSlice";
